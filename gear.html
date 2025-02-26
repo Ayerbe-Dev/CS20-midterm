@@ -2,8 +2,90 @@
 <html>
 <head>
     <title>Gear - CS20 Midterm</title>
-    <link rel="stylesheet" href = "styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <header>
+    <h1>Green Mountain Outfitters</h1>
+    <nav>
+       <a href="index.html">Home</a>
+       <a href="gear.html">Gear</a>
+       <a href="history.html">History</a>
+       <a href="cart.html">Cart</a>
+    </nav>
+  </header>
 
+  <main>
+    <div id="gear-container">
+      <!-- Products will be inserted here dynamically -->
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 CS20 Midterm Project</p>
+  </footer>
+
+  <script>
+    // Array of gear items
+    const gearItems = [
+      { name: "Mountain Bike", price: 500, description: "A sturdy mountain bike for rough terrain." },
+      { name: "Helmet", price: 50, description: "Safety first with this high-quality helmet." },
+      { name: "Gloves", price: 20, description: "Comfortable and durable gloves for any activity." },
+      { name: "Backpack", price: 70, description: "A rugged backpack to carry all your gear." },
+      { name: "Water Bottle", price: 15, description: "Stay hydrated with this durable water bottle." }
+    ];
+
+    // Render the gear items dynamically in the #gear-container div
+    function renderGearItems() {
+      const container = document.getElementById('gear-container');
+      gearItems.forEach(item => {
+        const productDiv = document.createElement('div');
+        productDiv.className = 'product';
+
+        // need to add image here
+        const img = document.createElement('img');
+        img.alt = item.name;
+
+        const h2 = document.createElement('h2');
+        h2.textContent = item.name;
+
+        const pDesc = document.createElement('p');
+        pDesc.textContent = item.description;
+
+        const pPrice = document.createElement('p');
+        pPrice.textContent = '$' + item.price;
+
+        const btn = document.createElement('button');
+        btn.textContent = "Add to Cart";
+        btn.onclick = function() { addToCart(item); };
+
+        productDiv.appendChild(img);
+        productDiv.appendChild(h2);
+        productDiv.appendChild(pDesc);
+        productDiv.appendChild(pPrice);
+        productDiv.appendChild(btn);
+
+        container.appendChild(productDiv);
+      });
+    }
+
+    // Function to add an item to the cart using localStorage
+    function addToCart(item) {
+      let cartNames = JSON.parse(localStorage.getItem('cartNames')) || [];
+      let cartNums = JSON.parse(localStorage.getItem('cartNums')) || [];
+      let index = cartNames.indexOf(item.name);
+      if(index === -1) {
+        cartNames.push(item.name);
+        cartNums.push(1);
+      } else {
+        cartNums[index]++;
+      }
+      localStorage.setItem('cartNames', JSON.stringify(cartNames));
+      localStorage.setItem('cartNums', JSON.stringify(cartNums));
+      alert(item.name + " added to cart!");
+    }
+
+    document.addEventListener('DOMContentLoaded', renderGearItems);
+  </script>
 </body>
+</html>

@@ -1,3 +1,109 @@
+/* styles.css - Outdoorsy, Smooth Theme */
+
+/* Global Styles */
 body {
-    background-color: green;
+    margin: 0;
+    padding: 0;
+    background: url('images/nature-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* Header Styles */
+header {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+header h1 {
+    font-family: 'Georgia', serif;
+    font-size: 2.5em;
+    text-align: center;
+    color: #2e8b57;
+    margin: 0;
+}
+
+/* Navigation Styles */
+nav {
+    display: flex;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 0;
+}
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #2e8b57;
+    font-size: 1.2em;
+}
+nav a:hover {
+    color: #3cb371;
+}
+
+/* Main Content Area */
+main {
+    background: rgba(255, 255, 255, 0.95);
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1200px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Gear Container and Product Styles */
+#gear-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+.product {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 30%;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.product img {
+    max-width: 100%;
+    border-radius: 4px;
+}
+.product h2 {
+    font-size: 1.5em;
+    color: #2e8b57;
+    margin: 10px 0;
+}
+.product p {
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+/* Button Styles */
+.product button {
+    background-color: #2e8b57;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+.product button:hover {
+    background-color: #3cb371;
+}
+
+/* Footer Styles */
+footer {
+    background: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9em;
 }
