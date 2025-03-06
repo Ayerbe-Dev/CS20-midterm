@@ -13,8 +13,6 @@ body {
 /* Header Styles */
 header {
     background: rgba(255, 255, 255, 0.8);
-    padding: 20px 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 header h1 {
     font-family: 'Georgia', serif;
@@ -25,20 +23,108 @@ header h1 {
 }
 
 /* Navigation Styles */
-nav {
+.nav-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
     background: rgba(255, 255, 255, 0.9);
-    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-nav a {
-    margin: 0 15px;
+
+.nav-container a {
+    text-decoration: none;
+}
+
+.logo {
+    font-family: 'Georgia', serif;
+    font-size: 1.5em;
+    color: #2e8b57;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-links a {
     text-decoration: none;
     color: #2e8b57;
-    font-size: 1.2em;
+    font-size: 1em;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: color 0.3s;
 }
-nav a:hover {
+
+.nav-links a:hover {
     color: #3cb371;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cart-icon, .user-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.cart-icon:hover, .user-icon:hover {
+    background: rgba(46, 139, 87, 0.2);
+}
+
+.user-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: black;
+}
+
+.cart-icon {
+    font-size: 1.3em;
+    color: #2e8b57;
+    position: relative;
+}
+
+.cart-icon span {
+    background: red;
+    color: white;
+    border-radius: 50%;
+    font-size: 0.7em;
+    padding: 2px 6px;
+    position: absolute;
+    top: -6px;
+    right: -9px;
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+    .nav-links a {
+        font-size: 0.9em;
+        padding: 6px 10px;
+    }
+    .icons {
+        margin-top: 10px;
+    }
 }
 
 /* Main Content Area */
