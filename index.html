@@ -5,15 +5,188 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | Green Mountain Outfitters</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                });
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('images/nature-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        main {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 1200px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .banner {
+            width: 100%;
+            max-height: 300px;
+            overflow: hidden;
+        }
+        .banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(46, 139, 87, 0.8);
+            color: white;
+            border-radius: 8px;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background: white;
+            color: #2e8b57;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn.secondary {
+            background: #2e8b57;
+            color: white;
+        }
+        .offers, .difference, .stay-connected {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .offer-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .offer-item {
+            text-align: center;
+        }
+        .offer-item img {
+            max-width: 80px;
+            margin-bottom: 10px;
+        }
+        .difference-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .difference-item {
+            width: 30%;
+            min-width: 250px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .stay-connected form {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .stay-connected input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.8);
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <header id="header-placeholder"></header>
-    <script>
-        fetch("header.html")
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById("header-placeholder").innerHTML = data;
-            });
-    </script>
+    <div class="banner">
+        <img src="images/banner.jpg" alt="Green Mountain Outfitters Banner">
+    </div>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Your Next Adventure Starts Here!</h1>
+                <p>High-quality gear. Expert guidance. Unforgettable experiences.</p>
+                <a href="locations.html" class="btn">Find a Store</a>
+            </div>
+        </section>
+        
+        <!-- What We Offer -->
+        <section class="offers">
+            <h2>What We Offer</h2>
+            <p>From weekend warriors to seasoned explorers, Green Mountain Outfitters provides the gear, expertise, and recommendations to fuel your next adventure.</p>
+            <div class="offer-icons">
+                <div class="offer-item">
+                    <img src="images/gear-icon.png" alt="Gear Rentals">
+                    <a href="gear.html">Gear Rentals</a>
+                </div>
+                <div class="offer-item">
+                    <img src="images/trip-icon.png" alt="Adventure Locations">
+                    <a href="trips.html">Adventure Locations</a>
+                </div>
+                <div class="offer-item">
+                    <img src="images/shop-icon.png" alt="Local Shops">
+                    <a href="locations.html">Find a Store</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- The Green Mountain Difference -->
+        <section class="difference">
+            <h2>The Green Mountain Difference</h2>
+            <div class="difference-grid">
+                <div class="difference-item">
+                    <h3>Top-Tier Gear</h3>
+                    <p>We provide only the best-tested outdoor equipment.</p>
+                </div>
+                <div class="difference-item">
+                    <h3>Local Experts</h3>
+                    <p>Our team members are passionate adventurers just like you.</p>
+                </div>
+                <div class="difference-item">
+                    <h3>Seamless Planning</h3>
+                    <p>Whether you rent gear or explore on your own, we make it easy.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Stay Connected -->
+        <section class="stay-connected">
+            <h2>Join the Adventure Community!</h2>
+            <p>Sign up for exclusive updates, discounts, and outdoor tips.</p>
+            <form action="#" method="POST">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn">Sign Up</button>
+            </form>
+        </section>
+        <footer>
+            <p>&copy; 2025 CS20 Midterm Project</p>
+        </footer>
+    </main>
 </body>
 </html>
