@@ -1,0 +1,31 @@
+{
+    "gear" : [
+        { 
+            "name" : "Mountain Bike",
+            "price" : "500",
+            "desc" : "A sturdy mountain bike for rough terrain."
+        },
+        {
+            "name" : "Helmet",
+            "price" : "50",
+            "desc" :  "Safety first with this high-quality helmet."
+        },
+        {
+            "name" : "Gloves",
+            "price" : "20",
+            "desc" : "Comfortable and durable gloves for any activity."
+
+        }, 
+        {
+            "name" : "Backpack",
+            "price" : "70",
+            "desc" : "A rugged backpack to carry all your gear."
+
+        },
+        {
+            "name" : "Water Bottle",
+            "price" : "15",
+            "desc" : "Stay hydrated with this durable water bottle."
+        }
+    ]
+}
