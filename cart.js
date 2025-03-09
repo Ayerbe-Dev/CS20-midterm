@@ -30,7 +30,7 @@ function decCartNum(itemName) {
     const cartNums = cartNumString ? JSON.parse(cartNumString) : [];
     var idx = cartNames.indexOf(itemName);
     cartNums[idx]--;
-    if (cartNums[idx] == 0) {
+    if (cartNums[idx] != 0) {
         localStorage.setItem('cartNums', JSON.stringify(cartNums));
     }
     else {
@@ -49,4 +49,17 @@ function removeFromCart(itemName) {
     cartNums.splice(idx, 1);
     localStorage.setItem('cartNames', JSON.stringify(cartNames));
     localStorage.setItem('cartNums', JSON.stringify(cartNums));
+}
+
+//getNumItemInCart: returns the number of copies of [itemName] currently in the cart
+function getNumItemsInCart(itemName) {
+    const cartNameString = localStorage.getItem('cartNames');
+    const cartNames = cartNameString ? JSON.parse(cartNameString) : [];
+    const cartNumString = localStorage.getItem('cartNums');
+    const cartNums = cartNumString ? JSON.parse(cartNumString) : [];
+    var idx = cartNames.indexOf(itemName);
+    if (idx != -1) {
+        return cartNums[idx];
+    }
+    return 0;
 }

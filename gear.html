@@ -3,6 +3,12 @@
 <head>
     <title>Gear - CS20 Midterm</title>
     <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="cart.js"></script>
+    <script 
+      src="https://code.jquery.com/jquery-3.1.1.min.js" 
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" 
+      crossorigin="anonymous">
+    </script>
 </head>
 <body>
   <header>
@@ -24,68 +30,73 @@
   <footer>
     <p>&copy; 2025 CS20 Midterm Project</p>
   </footer>
-
-  <script>
-    // Array of gear items
-    const gearItems = [
-      { name: "Mountain Bike", price: 500, description: "A sturdy mountain bike for rough terrain." },
-      { name: "Helmet", price: 50, description: "Safety first with this high-quality helmet." },
-      { name: "Gloves", price: 20, description: "Comfortable and durable gloves for any activity." },
-      { name: "Backpack", price: 70, description: "A rugged backpack to carry all your gear." },
-      { name: "Water Bottle", price: 15, description: "Stay hydrated with this durable water bottle." }
-    ];
-
+  <script language = "javascript">
     // Render the gear items dynamically in the #gear-container div
-    function renderGearItems() {
+    function populateGear() {
       const container = document.getElementById('gear-container');
-      gearItems.forEach(item => {
-        const productDiv = document.createElement('div');
-        productDiv.className = 'product';
+      const cartNameString = localStorage.getItem('cartNames');
+      const cartNames = cartNameString ? JSON.parse(cartNameString) : [];
+      const cartNumString = localStorage.getItem('cartNums');
+      const cartNums = cartNumString ? JSON.parse(cartNumString) : [];
+      $.get("https://raw.githubusercontent.com/Ayerbe-Dev/CS20-midterm/master/gear.json", 
+        function(data) {
+          data = JSON.parse(data); //???
+          str = "";
+          data["gear"].forEach(function(gear) {
+            str += "<div class = 'product' id = '" + gear.name + "'>";
+              str += "<img alt = " + gear.name + "/>";
+              str += "<h2>" + gear.name + "</h2>";
+              str += "<p>" + gear.desc + "</p>";
+              str += "<p>$" + gear.price + "</p>";
+              
+              str += "<div id = '" + gear.name + "_cartinfo'>"
+              let idx = cartNames.indexOf(gear.name)
+              if (idx != -1) { 
+                //If the item is already in the cart, we use up and down arrows to change the quantity
+                //of items instead of just adding it to the cart
 
-        // need to add image here
-        const img = document.createElement('img');
-        img.alt = item.name;
-
-        const h2 = document.createElement('h2');
-        h2.textContent = item.name;
-
-        const pDesc = document.createElement('p');
-        pDesc.textContent = item.description;
-
-        const pPrice = document.createElement('p');
-        pPrice.textContent = '$' + item.price;
-
-        const btn = document.createElement('button');
-        btn.textContent = "Add to Cart";
-        btn.onclick = function() { addToCart(item); };
-
-        productDiv.appendChild(img);
-        productDiv.appendChild(h2);
-        productDiv.appendChild(pDesc);
-        productDiv.appendChild(pPrice);
-        productDiv.appendChild(btn);
-
-        container.appendChild(productDiv);
-      });
+                //TODO:
+                //- Make it so which set of buttons you can see changes dynamically instead of
+                //  only when you refresh the page
+                str += "<button onclick = 'incGearCartNum(\"" + gear.name + "\")'>&nbsp;&uarr;&nbsp;</button>";
+                str += "<h2 id = '" + gear.name + "_cartquant'>" + cartNums[idx] + "</h2>";
+                str += "<button onclick = 'decGearCartNum(\"" + gear.name + "\")'>&nbsp;&darr;&nbsp;</button>";
+              }
+              else {
+                str += "<button onclick = 'addGearToCart(\"" + gear.name + "\")'>Add to Cart</button>";
+              }
+              str += "</div>";
+            str += "</div>";
+          });
+          container.innerHTML = str;
+        })
     }
 
-    // Function to add an item to the cart using localStorage
-    function addToCart(item) {
-      let cartNames = JSON.parse(localStorage.getItem('cartNames')) || [];
-      let cartNums = JSON.parse(localStorage.getItem('cartNums')) || [];
-      let index = cartNames.indexOf(item.name);
-      if(index === -1) {
-        cartNames.push(item.name);
-        cartNums.push(1);
-      } else {
-        cartNums[index]++;
+    function addGearToCart(name) {
+      addToCart(name, 1);
+      str = "<button onclick = 'incGearCartNum(\"" + name + "\")'>&nbsp;&uarr;&nbsp;</button>\
+            <h2 id = '" + name + "_cartquant'>1</h2>\
+            <button onclick = 'decGearCartNum(\"" + name + "\")'>&nbsp;&darr;&nbsp;</button>";
+      document.getElementById(name + "_cartinfo").innerHTML = str;
+    }
+
+    function incGearCartNum(name) {
+      incCartNum(name);
+      document.getElementById(name + "_cartquant").innerText = getNumItemsInCart(name);
+    }
+
+    function decGearCartNum(name) {
+      decCartNum(name);
+      num = getNumItemsInCart(name);      
+      if (num) {
+        document.getElementById(name + "_cartquant").innerText = num;
       }
-      localStorage.setItem('cartNames', JSON.stringify(cartNames));
-      localStorage.setItem('cartNums', JSON.stringify(cartNums));
-      alert(item.name + " added to cart!");
+      else {
+        document.getElementById(name + "_cartinfo").innerHTML = "<button onclick = 'addGearToCart(\"" + name + "\")'>Add to Cart</button>";
+      }
     }
 
-    document.addEventListener('DOMContentLoaded', renderGearItems);
+    document.addEventListener('DOMContentLoaded', populateGear);
   </script>
 </body>
 </html>
