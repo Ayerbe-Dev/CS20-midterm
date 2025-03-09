@@ -28,6 +28,7 @@ function addToCart(itemName) {
     localStorage.setItem('cartNames', JSON.stringify(cartNames));
     localStorage.setItem('cartNums', JSON.stringify(cartNums));
 
+    updateCart();
     updateCartBadge();
     alert(`✅ ${itemName} added to cart!`);
 }

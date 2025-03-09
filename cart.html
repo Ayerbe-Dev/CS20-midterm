@@ -22,6 +22,74 @@
     </script>
     <script src="products.js"></script> <!-- Load products.js first -->
     <script src="cart.js"></script> <!-- Then cart.js, which needs gearItems -->
+    <style>
+        h1, p {
+            text-align: center;
+        }
+        /* Cart Container Styling */
+        #cart-container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Individual Cart Items */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Buttons for +, -, and Remove */
+        .cart-item button {
+            background-color: #2e8b57;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .cart-item button:hover {
+            background-color: #3cb371;
+        }
+
+        /* Clear Cart Button */
+        #clear-cart {
+            background: red;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background 0.3s;
+            margin-top: 15px;
+        }
+
+        #clear-cart:hover {
+            background: darkred;
+        }
+
+        /* Total Amount */
+        #cart-total {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+    </style>
 </head>
 <body>
     <header id="header-placeholder"></header>
