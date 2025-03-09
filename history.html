@@ -3,49 +3,60 @@
 <head>
     <title>History - CS20 Midterm</title>
     <link rel="stylesheet" href = "styles.css">
+    <script src="header.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .then(() => {
+                    updateCartBadge();
+                });
+        });
+    </script>
 </head>
 <style>
     body {font-family: Arial, sans-serif;}
-    div#intro{text-align: center; font-weight: bold ;font-size: 30px;}
+    h1#intro{text-align: center; font-weight: bold ;font-size: 30px;}
     img#founder{float: right; height:300px;}
     img#sunset{width:fit-content; display: block; margin: auto;}
     span#first{font-size: 25px; color: #2e8b57;font-weight: bold}
     span#bodytext{font-size: 18px;font-weight:500}
 </style>
 <body>
-<header>
-    <h1>Green Mountain Outfitters</h1>
-</header>
-<main>
-
-    <div id = 'intro'>Our Story</div>
-    <br><br>
-    <img src="images/founder.jpg" id = 'founder'>
-    <span id = 'first'>Our</span>
-    <span id = 'bodytext'>founder, Henry Forest, was a lover of the outdoors from a young age. 
-        As a child he would often venture off into the woods behind his house and as he grew older, would
-        spend hours exploring local trails and hiking mountains. He had a deep appreciation for the natural world
-        and was a lover of adventure.
-    </span>
-    <br><br>
-    <span id = 'bodytext'>As he grew into a teenager and eventually a young adult, Henry became accustomed to taking on
-        longer and more dangerous journeys he often had to fend for himself. He and his fellow adventures often had to
-        make do with drinking from rivers, sleeping in shoddy tents with no heat and traveling either by foot or with vehicles
-        ill suited to rough terrain.
-    </span>
-    <br><br>
-    <span id = 'bodytext'>These experiences gave Henry an idea. What if there was a company that could provide tools and 
-        equipment for the adventures of the world. A company, that at the same time could spread his love of the outdoors
-        with the wider population. And so, Green Mountain Outfitters was born.
-    </span>
-    <br><br>
-    <span id = 'bodytext'>Although our founder has unfortunately passed way, Green Mountain and Henry's dream of helping
-        spread the spirit of adventure and aiding those who pursue it still lives on. Once a small enterprise, Green Mountain has
-        become one of the largest companies in its field will continue to pursue Henry's dream.
-    </span>
-</main>
-<img src="images/sunset.jpg" id = 'sunset'>
-<footer>
-    <p>&copy; 2025 CS20 Midterm Project</p>
-  </footer>
+    <header id="header-placeholder"></header>
+    <main>
+        <h1 id = 'intro'>Our Story</h1>
+        <br><br>
+        <img src="images/founder.jpg" id = 'founder'>
+        <span id = 'first'>Our</span>
+        <span id = 'bodytext'>founder, Henry Forest, was a lover of the outdoors from a young age. 
+            As a child he would often venture off into the woods behind his house and as he grew older, would
+            spend hours exploring local trails and hiking mountains. He had a deep appreciation for the natural world
+            and was a lover of adventure.
+        </span>
+        <br><br>
+        <span id = 'bodytext'>As he grew into a teenager and eventually a young adult, Henry became accustomed to taking on
+            longer and more dangerous journeys he often had to fend for himself. He and his fellow adventures often had to
+            make do with drinking from rivers, sleeping in shoddy tents with no heat and traveling either by foot or with vehicles
+            ill suited to rough terrain.
+        </span>
+        <br><br>
+        <span id = 'bodytext'>These experiences gave Henry an idea. What if there was a company that could provide tools and 
+            equipment for the adventures of the world. A company, that at the same time could spread his love of the outdoors
+            with the wider population. And so, Green Mountain Outfitters was born.
+        </span>
+        <br><br>
+        <span id = 'bodytext'>Although our founder has unfortunately passed way, Green Mountain and Henry's dream of helping
+            spread the spirit of adventure and aiding those who pursue it still lives on. Once a small enterprise, Green Mountain has
+            become one of the largest companies in its field will continue to pursue Henry's dream.
+        </span>
+        
+        <img src="images/sunset.jpg" id = 'sunset'>
+        <footer>
+            <p>&copy; 2025 CS20 Midterm Project</p>
+        </footer>
+    </main>
 </body>

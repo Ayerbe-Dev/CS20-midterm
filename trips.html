@@ -1,9 +1,107 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Trips - CS20 Midterm</title>
-    <link rel="stylesheet" href = "styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trips | Green Mountain Outfitters</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="header.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .then(() => {
+                    updateCartBadge();
+                });
+        });
+    </script>
+    <style>
+        #trips-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .trip {
+            background: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        @media (min-width: 768px) {
+            .trip {
+                width: 45%;
+            }
+        }
+
+        h1, h3 {
+            text-align: center;
+        }
+
+        h2 {
+            color: #2e8b57;
+            text-align: center;
+        }
+
+        h4 {
+            margin-bottom: 5px;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin: 0 0 10px 20px;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
-
+    <header id="header-placeholder"></header>
+    <main>
+        <h1>Explore New England</h1>
+        <section id="trips-container"></section>
+        <footer>
+            <p>&copy; 2025 CS20 Midterm Project</p>
+        </footer>
+    </main>
+    
+    <script>
+        // Function to fetch and display trips from JSON file
+        function loadTrips() {
+            fetch("trips.json")
+                .then(response => response.json())
+                .then(trips => {
+                    const container = document.getElementById("trips-container");
+    
+                    trips.forEach(trip => {
+                        let tripSection = document.createElement("section");
+                        tripSection.classList.add("trip");
+    
+                        tripSection.innerHTML = `
+                            <h2>${trip.name}</h2>
+                            <h3>Location: ${trip.location}</h3>
+                            <p><strong>Difficulty:</strong> ${trip.difficulty}</p>
+                            <p><strong>Distance:</strong> ${trip.distance}</p>
+                            <p><strong>Best Season:</strong> ${trip.best_season}</p>
+                            <p><strong>Recommended Activities:</strong> ${trip.activities.join(", ")}</p>
+                            <h4>Highlights:</h4>
+                            <ul>${trip.highlights.map(item => `<li>${item}</li>`).join("")}</ul>
+                        `;
+    
+                        container.appendChild(tripSection);
+                    });
+                })
+                .catch(error => console.error("Error loading trips:", error));
+        }
+    
+        // Run function on page load
+        document.addEventListener("DOMContentLoaded", loadTrips);
+    </script>
 </body>

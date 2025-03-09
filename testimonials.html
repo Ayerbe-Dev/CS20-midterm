@@ -1,9 +1,130 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Testimonials - CS20 Midterm</title>
-    <link rel="stylesheet" href = "styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials | Green Mountain Outfitters</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="header.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .then(() => {
+                    updateCartBadge();
+                });
+        });
+    </script>
+    <style>
+        h1, h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .testimonials-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+    
+        .testimonial {
+            background: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+    
+        .testimonial h3 {
+            font-size: 1.2em;
+            color: #333;
+        }
+    
+        .testimonial .rating {
+            color: #f4a261;
+            font-size: 1.1em;
+            margin: 5px 0;
+        }
+    
+        .testimonial p {
+            font-size: 1em;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
-
+    <header id="header-placeholder"></header>
+    <main>
+        <h1>Trusted by Explorers</h1>
+    
+        <section>
+            <h2>Gear Rentals</h2>
+            <div id="gear-rentals" class="testimonials-grid"></div>
+        </section>
+    
+        <section>
+            <h2>Trips</h2>
+            <div id="trips" class="testimonials-grid"></div>
+        </section>
+        <footer>
+            <p>&copy; 2025 CS20 Midterm Project</p>
+        </footer>
+    </main>
+    
+    <script>
+        // Testimonial Object
+        class Testimonial {
+            constructor(name, rating, comment, category) {
+                this.name = name;
+                this.rating = rating;
+                this.comment = comment;
+                this.category = category; // "Gear Rentals" or "Trips"
+            }
+        }
+    
+        // Array of testimonials categorized
+        const testimonials = [
+            // Gear Rentals
+            new Testimonial("Emily R.", "★★★★★", "Rented a tent and sleeping bag for a weekend trip—everything was top-notch!", "Gear Rentals"),
+            new Testimonial("Jake M.", "★★★★☆", "Great selection of gear, though I wish they had more ultralight options.", "Gear Rentals"),
+            new Testimonial("Samantha L.", "★★★★★", "Easy rental process and the gear was in great condition!", "Gear Rentals"),
+    
+            // Trips
+            new Testimonial("Tom W.", "★★★★☆", "Had an amazing hike at Mount Washington using their trekking poles. Highly recommended!", "Trips"),
+            new Testimonial("Olivia P.", "★★★★★", "Acadia National Park was breathtaking! Their camping gear made the trip smooth and hassle-free.", "Trips"),
+            new Testimonial("James K.", "★★★★★", "Explored the White Mountains—high-quality gear and great customer service!", "Trips"),
+        ];
+    
+        // Function to display testimonials under correct category
+        function displayTestimonials() {
+            const gearContainer = document.getElementById("gear-rentals");
+            const tripsContainer = document.getElementById("trips");
+    
+            testimonials.forEach(testimonial => {
+                const testimonialDiv = document.createElement("div");
+                testimonialDiv.classList.add("testimonial");
+    
+                testimonialDiv.innerHTML = `
+                    <h3>${testimonial.name}</h3>
+                    <p class="rating">${testimonial.rating}</p>
+                    <p>${testimonial.comment}</p>
+                `;
+    
+                if (testimonial.category === "Gear Rentals") {
+                    gearContainer.appendChild(testimonialDiv);
+                } else if (testimonial.category === "Trips") {
+                    tripsContainer.appendChild(testimonialDiv);
+                }
+            });
+        }
+    
+        // Run function on page load
+        document.addEventListener("DOMContentLoaded", displayTestimonials);
+    </script>
 </body>

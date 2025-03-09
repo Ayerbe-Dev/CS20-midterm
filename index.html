@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | Green Mountain Outfitters</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="header.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             fetch("header.html")
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .then(() => {
+                    updateCartBadge();
                 });
         });
     </script>
@@ -132,7 +136,6 @@
             <div class="hero-content">
                 <h1>Your Next Adventure Starts Here!</h1>
                 <p>High-quality gear. Expert guidance. Unforgettable experiences.</p>
-                <a href="locations.html" class="btn">Find a Store</a>
             </div>
         </section>
         
@@ -148,10 +151,6 @@
                 <div class="offer-item">
                     <img src="images/trip-icon.png" alt="Adventure Locations">
                     <a href="trips.html">Adventure Locations</a>
-                </div>
-                <div class="offer-item">
-                    <img src="images/shop-icon.png" alt="Local Shops">
-                    <a href="locations.html">Find a Store</a>
                 </div>
             </div>
         </section>
@@ -179,11 +178,23 @@
         <section class="stay-connected">
             <h2>Join the Adventure Community!</h2>
             <p>Sign up for exclusive updates, discounts, and outdoor tips.</p>
-            <form action="#" method="POST">
+            <form id="fake-signup-form">
                 <input type="email" name="email" placeholder="Enter your email" required>
                 <button type="submit" class="btn">Sign Up</button>
             </form>
+            <p id="confirmation-message" style="display: none; color: green; margin-top: 10px;">
+                ✅ You're signed up! (Not really 😉)
+            </p>
         </section>
+        
+        <script>
+            document.getElementById("fake-signup-form").addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevents actual form submission
+                document.getElementById("confirmation-message").style.display = "block"; // Show success message
+            });
+        </script>
+        
+
         <footer>
             <p>&copy; 2025 CS20 Midterm Project</p>
         </footer>

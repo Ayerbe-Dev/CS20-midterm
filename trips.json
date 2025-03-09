@@ -1,0 +1,74 @@
+[
+    {
+        "name": "Mount Washington",
+        "location": "New Hampshire",
+        "difficulty": "Challenging",
+        "distance": "8.2 miles round trip",
+        "best_season": "Summer to Early Fall",
+        "activities": ["Hiking", "Backpacking", "Scenic Railway"],
+        "highlights": ["Breathtaking summit views", "Tuckerman Ravine", "Cog Railway"]
+    },
+    {
+        "name": "Acadia National Park",
+        "location": "Maine",
+        "difficulty": "Moderate",
+        "distance": "Varies by trail",
+        "best_season": "Spring to Fall",
+        "activities": ["Hiking", "Biking", "Kayaking"],
+        "highlights": ["Cadillac Mountain sunrise", "Jordan Pond", "Carriage roads"]
+    },
+    {
+        "name": "Green Mountains",
+        "location": "Vermont",
+        "difficulty": "Varies",
+        "distance": "Varies (Long Trail is 273 miles total)",
+        "best_season": "Summer to Fall",
+        "activities": ["Hiking", "Camping", "Skiing"],
+        "highlights": ["Long Trail", "Stunning fall foliage", "Wildlife sightings"]
+    },
+    {
+        "name": "Franconia Ridge Loop",
+        "location": "New Hampshire",
+        "difficulty": "Difficult",
+        "distance": "8.9 miles loop",
+        "best_season": "Late Spring to Early Fall",
+        "activities": ["Hiking", "Photography"],
+        "highlights": ["Panoramic ridge views", "Mount Lafayette", "Alpine tundra"]
+    },
+    {
+        "name": "Mansfield State Forest",
+        "location": "Vermont",
+        "difficulty": "Moderate to Difficult",
+        "distance": "6.3 miles round trip",
+        "best_season": "Summer to Fall",
+        "activities": ["Hiking", "Rock Climbing"],
+        "highlights": ["Vermont's highest peak", "Cliff faces", "Alpine trails"]
+    },
+    {
+        "name": "Bash Bish Falls",
+        "location": "Massachusetts",
+        "difficulty": "Easy",
+        "distance": "2.1 miles round trip",
+        "best_season": "Spring to Fall",
+        "activities": ["Hiking", "Photography", "Picnicking"],
+        "highlights": ["Massachusetts' tallest waterfall", "Forested trail", "Great family-friendly spot"]
+    },
+    {
+        "name": "Sleeping Giant State Park",
+        "location": "Connecticut",
+        "difficulty": "Easy to Moderate",
+        "distance": "3.2 miles round trip",
+        "best_season": "Spring to Fall",
+        "activities": ["Hiking", "Picnicking", "Wildlife Watching"],
+        "highlights": ["Unique ridgeline formations", "Stone observation tower", "Great for families"]
+    },
+    {
+        "name": "Cliff Walk",
+        "location": "Rhode Island",
+        "difficulty": "Easy",
+        "distance": "3.5 miles one way",
+        "best_season": "Year-Round",
+        "activities": ["Walking", "Sightseeing", "Photography"],
+        "highlights": ["Ocean views", "Historic mansions", "Easy paved trail"]
+    }
+]

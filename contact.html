@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Green Mountain Outfitters</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="header.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .then(() => {
+                    updateCartBadge();
+                });
+        });
+    </script>
+    <style>
+        /* Contact Form Styling */
+        .contact-form {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #f8f8f8;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        h1, p {
+            text-align: center;
+        }
+    
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    
+        textarea {
+            resize: none;
+        }
+    
+        .btn {
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+            padding: 10px;
+            background: #2e8b57;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+    
+        .btn:hover {
+            background: #246b44;
+        }
+    
+        #char-counter {
+            font-size: 0.9em;
+            color: #666;
+            text-align: right;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header id="header-placeholder"></header>
+    <main>
+        <h1>Contact Us</h1>
+        <p>Have a question? Reach out and we'll get back to you as soon as possible.</p>
+    
+        <section class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form id="contact-form">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+    
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    
+                <label for="reason">Reason for Contact:</label>
+                <select id="reason" name="reason">
+                    <option value="general">General Inquiry</option>
+                    <option value="support">Customer Support</option>
+                    <option value="partnership">Partnership Opportunities</option>
+                </select>
+    
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" rows="4" placeholder="Enter your message" required></textarea>
+                <p id="char-counter">0/300 characters</p>
+    
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </section>
+    
+        <footer>
+            <p>&copy; 2025 CS20 Midterm Project</p>
+        </footer>
+    </main>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("contact-form");
+            const messageField = document.getElementById("message");
+            const charCounter = document.getElementById("char-counter");
+            const MAX_CHARS = 300;
+
+            // Limit input and update counter
+            messageField.addEventListener("input", function () {
+                let charCount = messageField.value.length;
+
+                if (charCount > MAX_CHARS) {
+                    messageField.value = messageField.value.substring(0, MAX_CHARS); // Truncate text
+                    charCount = MAX_CHARS; // Ensure counter updates correctly
+                }
+
+                charCounter.textContent = charCount + "/300 characters";
+                charCounter.style.color = charCount === MAX_CHARS ? "red" : "black"; // Warn user when at limit
+            });
+
+            // Form validation with character limit enforcement
+            form.addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent actual form submission
+
+                let name = document.getElementById("name").value.trim();
+                let email = document.getElementById("email").value.trim();
+                let message = messageField.value.trim();
+
+                if (name === "" || email === "" || message === "") {
+                    alert("Please fill out all fields before submitting.");
+                    return;
+                }
+
+                if (!email.includes("@")) {
+                    alert("Please enter a valid email address.");
+                    return;
+                }
+
+                if (message.length > MAX_CHARS) {
+                    alert("Your message is too long. Please shorten it to 300 characters.");
+                    return;
+                }
+
+                alert("✅ Your message has been sent! (Not really 😉)");
+                form.reset();
+                charCounter.textContent = "0/300 characters"; // Reset counter
+                charCounter.style.color = "black"; // Reset color
+            });
+        });
+    </script>
+</body>

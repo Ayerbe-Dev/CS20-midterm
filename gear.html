@@ -1,91 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Gear - CS20 Midterm</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gear | Green Mountain Outfitters</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="products.js"></script> <!-- Shared product data -->
+    <script src="cart.js"></script> <!-- Cart management -->
+    <script src="header.js"></script> <!-- Header functionality -->
+    <style>
+        h1, p {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Green Mountain Outfitters</h1>
-    <nav>
-       <a href="index.html">Home</a>
-       <a href="gear.html">Gear</a>
-       <a href="history.html">History</a>
-       <a href="cart.html">Cart</a>
-    </nav>
-  </header>
+    <header id="header-placeholder"></header>
 
-  <main>
-    <div id="gear-container">
-      <!-- Products will be inserted here dynamically -->
-    </div>
-  </main>
+    <main>
+        <h1>Explore Our Gear</h1>
+        <p>Find the perfect gear for your next adventure.</p>
 
-  <footer>
-    <p>&copy; 2025 CS20 Midterm Project</p>
-  </footer>
+        <section id="gear-container" class="gear-grid">
+            <!-- Products will be inserted here dynamically -->
+        </section>
 
-  <script>
-    // Array of gear items
-    const gearItems = [
-      { name: "Mountain Bike", price: 500, description: "A sturdy mountain bike for rough terrain." },
-      { name: "Helmet", price: 50, description: "Safety first with this high-quality helmet." },
-      { name: "Gloves", price: 20, description: "Comfortable and durable gloves for any activity." },
-      { name: "Backpack", price: 70, description: "A rugged backpack to carry all your gear." },
-      { name: "Water Bottle", price: 15, description: "Stay hydrated with this durable water bottle." }
-    ];
+        <footer>
+            <p>&copy; 2025 CS20 Midterm Project</p>
+        </footer>
+    </main>
 
-    // Render the gear items dynamically in the #gear-container div
-    function renderGearItems() {
-      const container = document.getElementById('gear-container');
-      gearItems.forEach(item => {
-        const productDiv = document.createElement('div');
-        productDiv.className = 'product';
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .then(() => {
+                    updateCartBadge();
+                });
 
-        // need to add image here
-        const img = document.createElement('img');
-        img.alt = item.name;
+            renderGearItems();
+        });
 
-        const h2 = document.createElement('h2');
-        h2.textContent = item.name;
 
-        const pDesc = document.createElement('p');
-        pDesc.textContent = item.description;
+        function renderGearItems() {
+            const container = document.getElementById('gear-container');
+            container.innerHTML = ""; // Clear previous content
 
-        const pPrice = document.createElement('p');
-        pPrice.textContent = '$' + item.price;
+            gearItems.forEach(item => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product';
 
-        const btn = document.createElement('button');
-        btn.textContent = "Add to Cart";
-        btn.onclick = function() { addToCart(item); };
+                const img = document.createElement('img');
+                img.src = item.img;
+                img.alt = item.name;
 
-        productDiv.appendChild(img);
-        productDiv.appendChild(h2);
-        productDiv.appendChild(pDesc);
-        productDiv.appendChild(pPrice);
-        productDiv.appendChild(btn);
+                const h2 = document.createElement('h2');
+                h2.textContent = item.name;
 
-        container.appendChild(productDiv);
-      });
-    }
+                const pDesc = document.createElement('p');
+                pDesc.textContent = item.description;
 
-    // Function to add an item to the cart using localStorage
-    function addToCart(item) {
-      let cartNames = JSON.parse(localStorage.getItem('cartNames')) || [];
-      let cartNums = JSON.parse(localStorage.getItem('cartNums')) || [];
-      let index = cartNames.indexOf(item.name);
-      if(index === -1) {
-        cartNames.push(item.name);
-        cartNums.push(1);
-      } else {
-        cartNums[index]++;
-      }
-      localStorage.setItem('cartNames', JSON.stringify(cartNames));
-      localStorage.setItem('cartNums', JSON.stringify(cartNums));
-      alert(item.name + " added to cart!");
-    }
+                const pPrice = document.createElement('p');
+                pPrice.className = 'price';
+                pPrice.textContent = `$${item.price.toFixed(2)}`;
 
-    document.addEventListener('DOMContentLoaded', renderGearItems);
-  </script>
+                const btn = document.createElement('button');
+                btn.className = 'btn';
+                btn.textContent = "Add to Cart";
+                btn.onclick = function() { addToCart(item.name); }; // ✅ Now calls cart.js function
+
+                productDiv.appendChild(img);
+                productDiv.appendChild(h2);
+                productDiv.appendChild(pDesc);
+                productDiv.appendChild(pPrice);
+                productDiv.appendChild(btn);
+
+                container.appendChild(productDiv);
+            });
+        }
+    </script>
 </body>
 </html>

@@ -96,15 +96,16 @@ header h1 {
     position: relative;
 }
 
-.cart-icon span {
+#cart-badge {
     background: red;
     color: white;
+    font-size: 0.6em;
     border-radius: 50%;
-    font-size: 0.7em;
-    padding: 2px 6px;
+    padding: 3px 6px;
     position: absolute;
     top: -6px;
     right: -9px;
+    display: none; /* ✅ Hidden when empty */
 }
 
 @media (max-width: 768px) {
@@ -137,29 +138,44 @@ main {
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* Gear Container and Product Styles */
+
 #gear-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
+    justify-content: center;
+    padding: 20px;
 }
+
+@media (max-width: 768px) {
+    #gear-container {
+        grid-template-columns: 1fr;
+    }
+}
+
 .product {
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    width: 30%;
     padding: 15px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+.product img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+.price {
+    font-weight: bold;
+    color: #2e8b57;
+}
+.btn:hover {
+    background: #246b44;
+}
 .product:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-.product img {
-    max-width: 100%;
-    border-radius: 4px;
 }
 .product h2 {
     font-size: 1.5em;

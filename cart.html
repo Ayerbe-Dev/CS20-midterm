@@ -1,24 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Cart - CS20 Midterm</title>
-    <link rel="stylesheet" href = "styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart | Green Mountain Outfitters</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="header.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .then(() => {
+                    updateCartBadge();
+                });
+
+            loadCart();
+        });
+    </script>
+    <script src="products.js"></script> <!-- Load products.js first -->
+    <script src="cart.js"></script> <!-- Then cart.js, which needs gearItems -->
 </head>
 <body>
-<script src="cart.js"type="text/javascript">
-    const cartNameString = localStorage.getItem('cartNames');
-    const cartNames = cartNameString ? JSON.parse(cartNameString) : [];
-    const cartNumString = localStorage.getItem('cartNums');
-    const cartNums = cartNumString ? JSON.parse(cartNumString) : [];
-    const itemPrices = new Map();
-    var total = 0;
-    for (i = 0; i < cartNames.length; i++) {
-        //TODO: Display the name and number of each element of this list on the page
+    <header id="header-placeholder"></header>
+    <main>
+        <h1>Your Shopping Cart</h1>
+        <section id="cart-container">
+            <h2>Items in Your Cart</h2>
+            <div id="cart-items"></div>
+            <h3 id="cart-total">Total: $0.00</h3>
+            <button id="clear-cart" class="btn">Clear Cart</button>
+        </section>
 
-        if (itemPrices.has(cartNames[i])) { //TODO: itemPrices hasn't actually been implemented yet
-            total += cartNums[i] * itemPrices[cartNames[i]];
-        }
-    }
-    //TODO: Display the total on the page
-</script>
+        <footer>
+            <p>&copy; 2025 CS20 Midterm Project</p>
+        </footer>
+    </main>
+    <script src="cart.js"></script>
 </body>
+</html>
