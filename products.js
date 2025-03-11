@@ -6,5 +6,5 @@ const gearItems = [
     { name: "Water Bottle", price: 15, description: "Stay hydrated with this durable water bottle.", img: "images/waterbottle.jpg" },
     { name: "Sleeping Bag", price: 80, description: "Stay warm on cold nights with this insulated sleeping bag.", img: "images/sleepingbag.jpg" },
     { name: "Tent", price: 150, description: "A lightweight, easy-to-pitch tent for all weather conditions.", img: "images/Tent.jpg" },
-    { name: "Hiking Boots", price: 120, description: "Durable and waterproof boots for any terrain.", img: "images/hikingboots.jpg" }
+    { name: "Hiking Boots", price: 120, description: "Durable and waterproof boots for any terrain.", img: "images/hiking_boots.jpg" }
 ];
