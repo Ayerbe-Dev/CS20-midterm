@@ -96,10 +96,14 @@
     <main>
         <h1>Your Shopping Cart</h1>
         <section id="cart-container">
-            <h2>Items in Your Cart</h2>
-            <div id="cart-items"></div>
-            <h3 id="cart-total">Total: $0.00</h3>
-            <button id="clear-cart" class="btn">Clear Cart</button>
+            <form id="cart-form">
+                <h2>Items in Your Cart</h2>
+                <div id="cart-items"></div>
+                <h3 id="cart-total">Total: $0.00</h3>
+                <button id="clear-cart" type="button" class="btn">Clear Cart</button>
+                <!-- New Submit Button -->
+                <button type="button" id="submit-cart" class="btn">Submit Cart</button>
+            </form>
         </section>
 
         <footer>
@@ -107,5 +111,13 @@
         </footer>
     </main>
     <script src="cart.js"></script>
+    <script>
+        // look clicks on the submit button
+        document.getElementById("submit-cart").addEventListener("click", function(e) {
+            e.preventDefault();
+            alert("Your cart has been submitted!");
+            clearCart();
+        });
+    </script>
 </body>
 </html>
