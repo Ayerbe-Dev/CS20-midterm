@@ -44,43 +44,22 @@
             renderGearItems();
         });
 
-
         function renderGearItems() {
             const container = document.getElementById('gear-container');
-            container.innerHTML = ""; // Clear previous content
-
+            container.innerHTML = "";
             gearItems.forEach(item => {
                 const productDiv = document.createElement('div');
                 productDiv.className = 'product';
-
-                const img = document.createElement('img');
-                img.src = item.img;
-                img.alt = item.name;
-
-                const h2 = document.createElement('h2');
-                h2.textContent = item.name;
-
-                const pDesc = document.createElement('p');
-                pDesc.textContent = item.description;
-
-                const pPrice = document.createElement('p');
-                pPrice.className = 'price';
-                pPrice.textContent = `$${item.price.toFixed(2)}`;
-
-                const btn = document.createElement('button');
-                btn.className = 'btn';
-                btn.textContent = "Add to Cart";
-                btn.onclick = function() { addToCart(item.name); }; // Now calls cart.js function
-
-                productDiv.appendChild(img);
-                productDiv.appendChild(h2);
-                productDiv.appendChild(pDesc);
-                productDiv.appendChild(pPrice);
-                productDiv.appendChild(btn);
-
+                productDiv.innerHTML = 
+                    `<img src="${item.img}" alt="${item.name}">
+                    <h2>${item.name}</h2>
+                    <p>${item.description}</p>
+                    <p class="price">$${item.price.toFixed(2)}</p>
+                    <button class="btn" onclick="addToCart('${item.name}')">Add to Cart</button>`;
                 container.appendChild(productDiv);
             });
         }
+
     </script>
 </body>
 </html>
