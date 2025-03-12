@@ -18,7 +18,7 @@ function addToCart(itemName) {
     let cartNums = JSON.parse(localStorage.getItem('cartNums')) || [];
 
     let index = cartNames.indexOf(itemName);
-    if (index === -1) {
+    if (index == -1) {
         cartNames.push(itemName);
         cartNums.push(1);
     } else {
@@ -45,7 +45,7 @@ function updateCart() {
 
     cartContainer.innerHTML = ""; // Clear previous items
 
-    if (cartNames.length === 0) {
+    if (cartNames.length == 0) {
         cartContainer.innerHTML = "<p>Your cart is empty.</p>";
         cartTotal.textContent = "Total: $0.00";
         return;
@@ -53,7 +53,7 @@ function updateCart() {
 
     cartNames.forEach((itemName, index) => {
         const quantity = cartNums[index];
-        const item = gearItems.find(i => i.name === itemName);
+        const item = gearItems.find(i => i.name == itemName);
         if (!item) return;
 
         const itemTotal = quantity * item.price;

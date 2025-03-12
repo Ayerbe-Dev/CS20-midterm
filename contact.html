@@ -127,7 +127,7 @@
                 }
 
                 charCounter.textContent = charCount + "/300 characters";
-                charCounter.style.color = charCount === MAX_CHARS ? "red" : "black"; // Warn user when at limit
+                charCounter.style.color = charCount == MAX_CHARS ? "red" : "black"; // Warn user when at limit
             });
 
             // Form validation with character limit enforcement
@@ -138,7 +138,7 @@
                 let email = document.getElementById("email").value.trim();
                 let message = messageField.value.trim();
 
-                if (name === "" || email === "" || message === "") {
+                if (name == "" || email == "" || message == "") {
                     alert("Please fill out all fields before submitting.");
                     return;
                 }

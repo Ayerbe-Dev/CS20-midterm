@@ -116,9 +116,9 @@
                     <p>${testimonial.comment}</p>
                 `;
     
-                if (testimonial.category === "Gear Rentals") {
+                if (testimonial.category == "Gear Rentals") {
                     gearContainer.appendChild(testimonialDiv);
-                } else if (testimonial.category === "Trips") {
+                } else if (testimonial.category == "Trips") {
                     tripsContainer.appendChild(testimonialDiv);
                 }
             });
