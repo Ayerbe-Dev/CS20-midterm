@@ -14,5 +14,5 @@ function updateCartBadge() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(updateCartBadge, 100); // ✅ Ensure it updates after the header loads
+    setTimeout(updateCartBadge, 100);
 });

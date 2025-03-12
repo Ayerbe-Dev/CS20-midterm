@@ -105,7 +105,7 @@ header h1 {
     position: absolute;
     top: -6px;
     right: -9px;
-    display: none; /* ✅ Hidden when empty */
+    display: none;
 }
 
 @media (max-width: 768px) {
